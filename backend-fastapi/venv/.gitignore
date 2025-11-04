@@ -1,0 +1,21 @@
+# ====== FastAPI backend ======
+backend-fastapi/venv/
+backend-fastapi/uploads/
+backend-fastapi/__pycache__/
+backend-fastapi/.env
+
+# ====== React frontend ======
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.vite/
+
+# ====== General ======
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# ====== IDE / Editor ======
+.vscode/
+.idea/

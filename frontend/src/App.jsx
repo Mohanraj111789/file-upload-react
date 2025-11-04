@@ -41,7 +41,7 @@ const App = () => {
         setSelectedFiles([...e.target.files]);
     };
 
-    const handleUpload = async () => {
+   const handleUpload = async () => {
     if (selectedFiles.length === 0) {
         setMessage("Please select at least one file");
         return;
@@ -49,7 +49,7 @@ const App = () => {
 
     const formData = new FormData();
     selectedFiles.forEach((file) => {
-        formData.append("images", file);
+        formData.append("files", file); // ✅ Changed from 'images' to 'files'
     });
 
     try {
@@ -64,11 +64,9 @@ const App = () => {
             }
         );
 
-        // ✅ Show success message
         setMessage("Files uploaded successfully!");
-
-        // ✅ Clear selected files after successful upload
         setSelectedFiles([]);
+        document.getElementById("file").value = null;
 
         console.log("Upload response:", response.data);
     } catch (error) {
