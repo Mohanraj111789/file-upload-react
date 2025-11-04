@@ -42,39 +42,42 @@ const App = () => {
     };
 
     const handleUpload = async () => {
-        if (selectedFiles.length === 0) {
-            setMessage("Please select at least one file");
-            return;
-        }
+    if (selectedFiles.length === 0) {
+        setMessage("Please select at least one file");
+        return;
+    }
 
-        const formData = new FormData();
-        selectedFiles.forEach((file) => {
-            formData.append("images", file); // 'images' matches the field name in multer config
-        });
+    const formData = new FormData();
+    selectedFiles.forEach((file) => {
+        formData.append("images", file);
+    });
 
-        try {
-            setUploading(true);
-            setMessage("Uploading...");
-            
-            const response = await axios.post(
-                `${API_URL}/upload/multiple`,
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+    try {
+        setUploading(true);
+        setMessage("Uploading...");
 
-            setMessage("Files uploaded successfully!");
-            console.log("Upload response:", response.data);
-        } catch (error) {
-            console.error("Error uploading files:", error);
-            setMessage("Error uploading files. Please try again.");
-        } finally {
-            setUploading(false);
-        }
-    };
+        const response = await axios.post(
+            `${API_URL}/upload/multiple`,
+            formData,
+            {
+                headers: { "Content-Type": "multipart/form-data" },
+            }
+        );
+
+        // ✅ Show success message
+        setMessage("Files uploaded successfully!");
+
+        // ✅ Clear selected files after successful upload
+        setSelectedFiles([]);
+
+        console.log("Upload response:", response.data);
+    } catch (error) {
+        console.error("Error uploading files:", error);
+        setMessage("Error uploading files. Please try again.");
+    } finally {
+        setUploading(false);
+    }
+};
 
     const removeFile = (index) => {
         const newFiles = [...selectedFiles];
