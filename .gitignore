@@ -3,6 +3,7 @@ backend-fastapi/venv/
 backend-fastapi/uploads/
 backend-fastapi/__pycache__/
 backend-fastapi/.env
+backend-fastapi/dummy/
 
 # ====== React frontend ======
 frontend/node_modules/
